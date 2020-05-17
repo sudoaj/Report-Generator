@@ -3,7 +3,8 @@ import * as React from 'react';
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
+import ReportFormScreen from '../screens/ReportFormScreen';
+import ReportRecordScreen from '../screens/ReportRecordScreen';
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
@@ -20,15 +21,24 @@ export default function BottomTabNavigator({ navigation, route }) {
         name="Home"
         component={HomeScreen}
         options={{
-          title: 'Get Started',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-code-working" />,
+          title: 'Hourly',
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-time" />,
         }}
       />
       <BottomTab.Screen
-        name="Links"
-        component={LinksScreen}
+        name="Reports"
+        component={ReportRecordScreen}
         options={{
-          title: 'Resources',
+          title: 'Reports',
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-book" />,
+        }}
+      />
+
+    <BottomTab.Screen
+        name="ReportsForm"
+        component={ReportFormScreen}
+        options={{
+          title: 'Reports Form',
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-book" />,
         }}
       />
@@ -41,8 +51,10 @@ function getHeaderTitle(route) {
 
   switch (routeName) {
     case 'Home':
-      return 'How to get started';
-    case 'Links':
-      return 'Links to learn more';
+      return 'Hourly Time Report';
+    case 'Reports':
+      return 'All Reports';
+    case 'ReportsForm':
+        return 'Report Form';
   }
 }

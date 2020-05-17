@@ -4,25 +4,21 @@ import * as React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { RectButton, ScrollView } from 'react-native-gesture-handler';
 
-export default function LinksScreen() {
+export default function ReportRecordScreen() {
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
       <OptionButton
-        icon="md-school"
-        label="Read the Expo documentation"
-        onPress={() => WebBrowser.openBrowserAsync('https://docs.expo.io')}
+        icon="md-book"
+        label="Report On 05/11/2020"
+        onPress={() => WebBrowser.openBrowserAsync('https:example.com')}
+
+
       />
 
       <OptionButton
-        icon="md-compass"
-        label="Read the React Navigation documentation"
-        onPress={() => WebBrowser.openBrowserAsync('https://reactnavigation.org')}
-      />
-
-      <OptionButton
-        icon="ios-chatboxes"
-        label="Ask a question on the forums"
-        onPress={() => WebBrowser.openBrowserAsync('https://forums.expo.io')}
+        icon="md-book"
+        label="Report On 05/12/2020"
+        onPress={() => WebBrowser.openBrowserAsync('https:example.com')}
         isLastOption
       />
     </ScrollView>

@@ -7,6 +7,7 @@ import useCachedResources from './hooks/useCachedResources';
 import BottomTabNavigator from './navigation/BottomTabNavigator';
 import LinkingConfiguration from './navigation/LinkingConfiguration';
 
+
 const Stack = createStackNavigator();
 
 export default function App(props) {
