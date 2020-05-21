@@ -5,7 +5,8 @@ import { CheckBox } from 'react-native-elements'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 
-export default function PatrolForms(props) {
+
+export  default function PatrolForms(props) {
     const [Patrol, setPatrol] = useState(false);
     const [LockedDoors, setLockedDoors] = useState(false);
     const [UnLockedDoors, setUnLockedDoors] = useState(false);
@@ -13,8 +14,6 @@ export default function PatrolForms(props) {
     const [SecurityRisk, setSecurityRisk] = useState(false);
     const [ExtraNotes, setExtraNotes] = useState(false);
     const [AttachedFile, setAttachedFile] = useState(false);
-
-
 
 
     return (

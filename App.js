@@ -1,32 +1,68 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
-import { Platform, StatusBar, StyleSheet, View } from 'react-native';
-
+import { StyleSheet, Text } from 'react-native';
 import useCachedResources from './hooks/useCachedResources';
-import BottomTabNavigator from './navigation/BottomTabNavigator';
-import LinkingConfiguration from './navigation/LinkingConfiguration';
 
 
-const Stack = createStackNavigator();
+import HomeScreen from './screens/HomeScreen';
+import ReportRecordScreen from './screens/ReportRecordScreen'
+import { PatrolForms } from './components/PatrolForm'
+import ReportFormScreen from './screens/ReportFormScreen'
+import { Router, Scene } from 'react-native-router-flux'
 
+
+const TabIcon = ({ selected, title }) => {
+  return (
+    <Text style={{ color: selected ? 'red' : 'black' }}>{title}</Text>
+  );
+}
 export default function App(props) {
-  const isLoadingComplete = useCachedResources();
 
-  if (!isLoadingComplete) {
-    return null;
-  } else {
-    return (
-      <View style={styles.container}>
-        {Platform.OS === 'ios' && <StatusBar barStyle="dark-content" />}
-        <NavigationContainer linking={LinkingConfiguration}>
-          <Stack.Navigator>
-            <Stack.Screen name="Root" component={BottomTabNavigator} />
-          </Stack.Navigator>
-        </NavigationContainer>
-      </View>
-    );
-  }
+  return (
+    <Router>
+      <Scene key="root">
+        {/* Tab Container */}
+
+
+        <Scene
+          hideNavBar
+          key="tabbar"
+          tabs={true}
+          tabBarStyle={{ backgroundColor: '#fff' }}
+        >
+          {/* Tab and it's scenes */}
+          <Scene key="home" title="Home" icon={TabIcon}>
+            <Scene
+              key="home-screen"
+              component={HomeScreen}
+              title="Home"
+            />
+          </Scene>
+
+          {/* Tab and it's scenes */}
+          <Scene key="reportRecord" title="Report" icon={TabIcon}>
+            <Scene
+
+              key="report-screen"
+              component={ReportRecordScreen}
+              title="Report"
+            />
+          </Scene>
+        </Scene>
+        <Scene
+          hideNavBar
+          key="modal"
+          direction="vertical"
+          component={ReportFormScreen}
+          title="Modal"
+
+        />
+
+        {/* End Tab Continer */}
+
+      </Scene>
+    </Router>
+  );
+
 }
 
 const styles = StyleSheet.create({

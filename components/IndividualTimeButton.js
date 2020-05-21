@@ -1,32 +1,25 @@
 
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TouchableHighlight } from 'react-native';
-
-
+import { StyleSheet, Text, TouchableHighlight } from 'react-native';
+import { Actions, Scene } from 'react-native-router-flux'
+import {PatrolForms} from './PatrolForm'
 
 export default function IndividualTimeButton(props) {
 
     return (
 
 
-            <TouchableHighlight
-                style={[styles.container, {backgroundColor:props.color}]}
-                onPress={() => launchIndividualTimeEntry()}
-                underlayColor='#fff'
-                >
-                <Text style={styles.bigTimeButton}>{props.name}</Text>
-
-            </TouchableHighlight>
-
-
-
+        <TouchableHighlight
+            style={[styles.container, { backgroundColor: props.color }]}
+            // onPress={() => launchIndividualTimeEntry()}
+            onPress={() => Actions.modal()}
+            underlayColor='#fff'
+        >
+            <Text style={styles.bigTimeButton}>{props.name}</Text>
+        </TouchableHighlight>
 
     );
 
-}
-const launchIndividualTimeEntry = () => {
-
-    console.log("Time");
 }
 const styles = StyleSheet.create({
     container: {

@@ -1,7 +1,8 @@
 import * as WebBrowser from 'expo-web-browser';
 import * as React from 'react';
-import { StyleSheet, View, Button, TouchableHighlight, Text } from 'react-native';
+import { StyleSheet, View, TouchableHighlight, Text } from 'react-native';
 
+import { Router, Scene } from 'react-native-router-flux';
 
 
 import TopTime from '../components/TopTime'
@@ -18,6 +19,8 @@ export default function HomeScreen() {
       <TopInputs></TopInputs>
       <StatusBoxes></StatusBoxes>
       <IndividualTimeContainer></IndividualTimeContainer>
+      
+      
       <TouchableHighlight
         style={styles.submit}
         onPress={() => generatReport()}
@@ -27,7 +30,7 @@ export default function HomeScreen() {
     </View>
   );
 }
-const generatReport=()=>{
+const generatReport = () => {
   console.log("Hi there");
 }
 const styles = StyleSheet.create({
@@ -41,7 +44,7 @@ const styles = StyleSheet.create({
     marginRight: 70,
     marginLeft: 70,
     marginTop: 15,
-    marginBottom:15,
+    marginBottom: 15,
     paddingTop: 15,
     paddingBottom: 15,
     backgroundColor: 'grey',
