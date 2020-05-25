@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
-import * as WebBrowser from 'expo-web-browser';
 import * as React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { Actions } from 'react-native-router-flux'
 import { RectButton, ScrollView } from 'react-native-gesture-handler';
 
 export default function ReportRecordScreen() {
@@ -10,7 +10,7 @@ export default function ReportRecordScreen() {
       <OptionButton
         icon="md-book"
         label="Report On 05/11/2020"
-        onPress={() => WebBrowser.openBrowserAsync('https:example.com')}
+        onPress={() => Actions.completedReport()}
 
 
       />
@@ -18,7 +18,7 @@ export default function ReportRecordScreen() {
       <OptionButton
         icon="md-book"
         label="Report On 05/12/2020"
-        onPress={() => WebBrowser.openBrowserAsync('https:example.com')}
+        onPress={() => Actions.completedReport()}
         isLastOption
       />
     </ScrollView>

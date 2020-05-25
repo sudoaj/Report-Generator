@@ -29,7 +29,7 @@ export default function StatusBoxes(props) {
     return (
         <View style={[{ margin: 10 }, { padding: 10 }, styles.container2]}>
             {statusNameAndColor.map(({ name, color }) => {
-                return <View style={[{ backgroundColor: color }, { margin: 10 }, { padding: 5 }]}><Text style={{ margin: 1 }, { padding: 1 }, { color: 'white' }}>{name}</Text></View>
+                return <View key={name} style={[{ backgroundColor: color }, { margin: 10 }, { padding: 5 }]}><Text style={{ margin: 1 }, { padding: 1 }, { color: 'white' }}>{name}</Text></View>
             })}
         </View>
     )

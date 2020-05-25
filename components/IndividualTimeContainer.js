@@ -44,7 +44,7 @@ export default function IndividualTimeContainer(props) {
     return (
         <View style={styles.container}>
              {timesNameAndColor.map(({ name, color }) => {
-                  return <IndividualTimeButton name={name} color={color}></IndividualTimeButton>
+                  return <IndividualTimeButton key={name} name={name} color={color}></IndividualTimeButton>
             })}
             
 

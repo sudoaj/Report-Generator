@@ -2,7 +2,7 @@ import * as WebBrowser from 'expo-web-browser';
 import * as React from 'react';
 import { StyleSheet, View, TouchableHighlight, Text } from 'react-native';
 
-import { Router, Scene } from 'react-native-router-flux';
+import { Router, Scene, Actions } from 'react-native-router-flux';
 
 
 import TopTime from '../components/TopTime'
@@ -31,6 +31,7 @@ export default function HomeScreen() {
   );
 }
 const generatReport = () => {
+  Actions.reportScreen();
   console.log("Hi there");
 }
 const styles = StyleSheet.create({

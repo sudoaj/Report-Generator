@@ -1,8 +1,8 @@
 
-import React, { Component } from 'react';
+import React from 'react';
 import { StyleSheet, Text, TouchableHighlight } from 'react-native';
-import { Actions, Scene } from 'react-native-router-flux'
-import {PatrolForms} from './PatrolForm'
+import { Actions } from 'react-native-router-flux'
+
 
 export default function IndividualTimeButton(props) {
 
@@ -11,7 +11,6 @@ export default function IndividualTimeButton(props) {
 
         <TouchableHighlight
             style={[styles.container, { backgroundColor: props.color }]}
-            // onPress={() => launchIndividualTimeEntry()}
             onPress={() => Actions.modal()}
             underlayColor='#fff'
         >

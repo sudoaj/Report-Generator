@@ -27,14 +27,14 @@ export default function TopInputs(props) {
 
             <TextInput
                 style={styles.NameText}
-                editable="false"
+                editable={false}
             >AJAYI ABDULSALAM
             </TextInput>
 
            
             <TextInput
                 style={styles.NameText}
-                editable="false"
+                editable={false}
             >Atlanta Botanical Garden
             </TextInput>
             </View>
@@ -44,12 +44,12 @@ export default function TopInputs(props) {
 
             <TextInput
                 style={styles.NameText}
-                editable="false"
+                editable={false}
             >{date.toLocaleDateString()}
             </TextInput>
             <TextInput
                 style={styles.NameText}
-                editable="false"
+                editable={false}
             >
                 1900 - 0700
             </TextInput>   

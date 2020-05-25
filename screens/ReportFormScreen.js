@@ -8,7 +8,7 @@ import { Actions } from 'react-native-router-flux';
 export default function ReportFormScreen() {
   return (
     <View style={styles.container}>
-      <Text style={[{ fontSize: 50 }, { textAlign: 'center' }]}>1900</Text>
+      <Text style={[{ fontSize: 20, margin:10 }, { textAlign: 'center' }]}>Check each for affirmation of action </Text>
       <PatrolForms></PatrolForms>
       <View>
         <TouchableHighlight
@@ -34,9 +34,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    textAlign: 'center',
-    marginBottom:50,
-    marginTop:40
+
+
   },
 
   submit1: {
