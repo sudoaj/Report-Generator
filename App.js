@@ -7,65 +7,74 @@ import ReportFormScreen from "./screens/ReportFormScreen";
 import { Router, Scene } from "react-native-router-flux";
 
 const TabIcon = ({ selected, title }) => {
-  return <Text style={{ color: selected ? "red" : "black" }}>{title}</Text>;
+	return <Text style={{ color: selected ? "red" : "black" }}>{title}</Text>;
 };
-export default class App extends React.Component{
-  render(){
-    return (
-      <Router>
-        <Scene key="root">
-          {/* Tab Container */}
-  
-          <Scene
-            hideNavBar
-            key="tabbar"
-            tabs={true}
-            tabBarStyle={{ backgroundColor: "#fff" }}
-          >
-            {/* Tab and it's scenes */}
-            <Scene key="home" title="Home" icon={TabIcon}>
-              <Scene
-                navigationBarStyle={{ backgroundColor: "lightBlue" }}
-                key="home-screen"
-                component={HomeScreen}
-                title="Home"
-              />
-              <Scene
-                navigationBarStyle={{ backgroundColor: "red" }}
-                backTitle="Incomplete"
-                key="modal"
-                direction="vertical"
-                component={ReportFormScreen}
-                title="Report Form"
-              />
-            </Scene>
-  
-            {/* Tab and it's scenes */}
-            <Scene key="reportRecord" title="Report" icon={TabIcon}>
-              <Scene
-                navigationBarStyle={{ backgroundColor: "red" }}
-                key="reportScreen"
-                component={ReportRecordScreen}
-                title="Report"
-              />
-              <Scene
-                key="completedReport"
-                direction="vertical"
-                component={CompletedReport}
-                title="Completed Report"
-              />
-            </Scene>
-          </Scene>
-  
-          {/* End Tab Continer */}
-        </Scene>
-      </Router>
-    );
-  }
+export default class App extends React.Component {
+	// async componentDidMount() {
+	// 	await Font.loadAsync(
+	// 		"FontAwesome",
+	// 		URL("https://github.com/FortAwesome/Font-Awesome/raw/master/fonts/fontawesome-webfont.ttf")
+	// 	);
+	// }
+
+	render() {
+		return (
+			<Router>
+				<Scene key="root">
+					{/* Tab Container */}
+
+					<Scene
+						hideNavBar
+						key="tabbar"
+						tabs={true}
+						tabBarStyle={{ backgroundColor: "#fff" }}
+					>
+						{/* Tab and it's scenes */}
+						<Scene key="home" title="Home" icon={TabIcon} tab>
+							<Scene
+								navigationBarStyle={{ backgroundColor: "grey" }}
+								key="home-screen"
+								component={HomeScreen}
+								title="Home"
+							/>
+							<Scene
+								hideBackImage
+								hideNavBar
+								hideTabBar
+								gesturesEnabled={false}
+								navigationBarStyle={{ backgroundColor: "red" }}
+								key="modal"
+								component={ReportFormScreen}
+								title="Report Forms"
+							/>
+						</Scene>
+
+						{/* Tab and it's scenes */}
+						<Scene key="reportRecord" title="Report" icon={TabIcon}>
+							<Scene
+								navigationBarStyle={{ backgroundColor: "red" }}
+								key="reportScreen"
+								component={ReportRecordScreen}
+								title="Report"
+							/>
+							<Scene
+								key="completedReport"
+								direction="vertical"
+								component={CompletedReport}
+								title="Completed Report"
+							/>
+						</Scene>
+					</Scene>
+
+					{/* End Tab Continer */}
+				</Scene>
+			</Router>
+		);
+	}
 }
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-  },
+	container: {
+		flex: 1,
+		backgroundColor: "#fff",
+	},
 });

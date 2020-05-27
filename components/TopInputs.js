@@ -27,7 +27,7 @@ export default function TopInputs(props) {
 
             <TextInput
                 style={styles.NameText}
-                editable={false}
+                editable={true}
             >AJAYI ABDULSALAM
             </TextInput>
 

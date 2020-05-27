@@ -61,7 +61,7 @@ export default class CompletedReport extends Component {
           "Lorem Ipsum is simply dumndard dummy text ever since the 1500s,it to make a type specimen book. It has survived not",
         ],
       ],
-      officerDignature: [["Signature:"]],
+      officerSignature: [["Signature:"]],
     };
   }
   render() {
@@ -110,7 +110,7 @@ export default class CompletedReport extends Component {
                 />
               </TableWrapper>
               <Rows
-                data={state.officerDignature}
+                data={state.officerSignature}
                 flexArr={[1, 4]}
                 textStyle={{ fontSize: 20, padding: 10, fontWeight: "bold" }}
               />

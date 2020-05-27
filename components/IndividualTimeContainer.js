@@ -1,69 +1,100 @@
+import React, { Component } from "react";
+import { StyleSheet, View, Text } from "react-native";
+import IndividualTimeButton from "./IndividualTimeButton";
+import { Actions } from "react-native-router-flux";
 
-import React, { Component } from 'react';
-import { StyleSheet, View,Text } from 'react-native';
-import IndividualTimeButton from './IndividualTimeButton'
-
-const timesNameAndColor = [
-    {
-        name: "0900",
-        color: "green"
-    },
-    {
-        name: "1000",
-        color: "red"
-    },
-    {
-        name: "1100",
-        color: "blue"
-    },
-    {
-        name: "1200",
-        color: "grey"
-    },
-    {
-        name: "1300",
-        color: "grey"
-    },
-    {
-        name: "1400",
-        color: "grey"
-    },{
-        name: "1500",
-        color: "grey"
-    },{
-        name: "1600",
-        color: "grey"
-    },{
-        name: "1700",
-        color: "grey"
-    }
-
-]
+export let initialData = {
+	officerName: "AJAYI",
+	date: Date.now(),
+	timeInterval: "0900-0700",
+	totalTime: 4,
+	formData: [
+		{
+			name: "09:00",
+			color: "red",
+			patrolState: false,
+			patrolNotes: "",
+			lockedDoorState: false,
+			lockedDoorNotes: "",
+			unlockedDoorState: false,
+			unlockedDoorNotes: "SEE?",
+			monitoredCameraState: false,
+			monitoredCameraNote: "",
+			securityRiskState: false,
+			securityRiskNote: "",
+			extraNoteState: false,
+			extraNoteNote: "",
+			attachedFileState: false,
+			attachedFileStateNote: "",
+		},
+		{
+			name: "10:00",
+			color: "grey",
+			patrolState: false,
+			patrolNotes: "",
+			lockedDoorState: false,
+			lockedDoorNotes: "",
+			unlockedDoorState: false,
+			unlockedDoorNotes: "",
+			monitoredCameraState: false,
+			monitoredCameraNote: "",
+			securityRiskState: false,
+			securityRiskNote: "",
+			extraNoteState: false,
+			extraNoteNote: "",
+			attachedFileState: false,
+			attachedFileStateNote: "",
+		},
+		{
+			name: "11:00",
+			color: "grey",
+			patrolState: false,
+			patrolNotes: "",
+			lockedDoorState: false,
+			lockedDoorNotes: "",
+			unlockedDoorState: false,
+			unlockedDoorNotes: "",
+			monitoredCameraState: false,
+			monitoredCameraNote: "",
+			securityRiskState: false,
+			securityRiskNote: "",
+			extraNoteState: false,
+			extraNoteNote: "",
+			attachedFileState: false,
+			attachedFileStateNote: "",
+		}
+	],
+};
 export default function IndividualTimeContainer(props) {
-
-    return (
-        <View style={styles.container}>
-             {timesNameAndColor.map(({ name, color }) => {
-                  return <IndividualTimeButton key={name} name={name} color={color}></IndividualTimeButton>
-            })}
-            
-
-        </View>
-        
-
-
-    );
-
+	return (
+		<View style={styles.container}>
+			{initialData.formData.map((item, index) => {
+				return (
+					<IndividualTimeButton
+						key={index}
+						name={item.name}
+						color={item.color}
+						onPress={() =>
+							Actions.modal({
+								formData: item,
+								formIndex: index,
+							})
+						}
+					></IndividualTimeButton>
+				);
+			})}
+		</View>
+	);
 }
 
 const styles = StyleSheet.create({
-    container: {
-        justifyContent: 'center',
-        margin: 5,
-        flex: 1,
-        backgroundColor: '#fff',
-        flexDirection: 'row',
-        alignContent: 'center',
-        flexWrap: 'wrap',
-    },
+	container: {
+		justifyContent: "center",
+		margin: 5,
+		flex: 1,
+		backgroundColor: "#fff",
+		flexDirection: "row",
+		alignContent: "center",
+		flexWrap: "wrap",
+	},
 });

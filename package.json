@@ -24,6 +24,8 @@
     "expo-linking": "^1.0.1",
     "expo-splash-screen": "^0.2.3",
     "expo-web-browser": "~8.2.0",
+    "font-awesome": "^4.7.0",
+    "native-base": "^2.13.12",
     "react": "^16.13.1",
     "react-dom": "~16.9.0",
     "react-live-clock": "^4.0.5",
@@ -44,7 +46,8 @@
   "devDependencies": {
     "@babel/core": "^7.8.6",
     "babel-preset-expo": "~8.1.0",
-    "jest-expo": "~37.0.0"
+    "jest-expo": "~37.0.0",
+    "prettier": "2.0.5"
   },
   "private": true
 }
