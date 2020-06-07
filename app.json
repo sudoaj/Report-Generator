@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "jd",
-    "slug": "jd",
+    "name": "Report Generator",
+    "slug": "report-generator",
     "platforms": [
       "ios",
       "android",
@@ -27,6 +27,8 @@
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
-    }
+    },
+    "description": "Report Generator",
+    "githubUrl": "https://github.com/shalam15/Report-Generator"
   }
 }

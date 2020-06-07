@@ -38,16 +38,20 @@
     "react-native-safe-area-context": "0.7.3",
     "react-native-screens": "~2.2.0",
     "react-native-table-component": "^1.2.1",
+    "react-native-textinput-effects": "^0.6.1",
+    "react-native-vector-icons": "^6.6.0",
     "react-native-web": "~0.11.7",
     "react-redux": "^7.2.0",
     "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "devtools": "react-devtools"
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",
     "babel-preset-expo": "~8.1.0",
     "jest-expo": "~37.0.0",
-    "prettier": "2.0.5"
+    "prettier": "2.0.5",
+    "react-devtools": "^4.7.0"
   },
   "private": true
 }
