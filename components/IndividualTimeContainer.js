@@ -41,18 +41,14 @@ class IndividualTimeContainer extends React.Component {
 				})}
 
 				{/* MAPPING TIME BUTTON */}
-				{initialData.formData.map((item, index) => {
-					return (
-						<IndividualTimeButton
-							key={index}
-							name={item.name}
-							color={item.color}
-							onPress={() =>
-								Actions.modal({ formData: item, formIndex: index })
-							}
-						></IndividualTimeButton>
-					);
-				})}
+				{this.props.initialData.formData.map((item, index) => (
+					<IndividualTimeButton
+						key={index}
+						name={item.timeSlotName}
+						color={item.timeSlotColor}
+						onPress={() => Actions.modal({ formData: item, formIndex: index })}
+					></IndividualTimeButton>
+				))}
 
 				<TouchableHighlight
 					style={styles.submit}
@@ -66,50 +62,6 @@ class IndividualTimeContainer extends React.Component {
 	}
 }
 
-const initialData = {
-	officerName: "AJAYI",
-	date: Date.now(),
-	timeInterval: "0900-0700",
-	totalTime: 4,
-	formData: [
-		{
-			name: "1900",
-			color: "#a1160d",
-			patrolState: false,
-			patrolNotes: "",
-			lockedDoorState: false,
-			lockedDoorNotes: "",
-			unlockedDoorState: false,
-			unlockedDoorNotes: "SEE?",
-			monitoredCameraState: false,
-			monitoredCameraNote: "",
-			securityRiskState: false,
-			securityRiskNote: "",
-			extraNoteState: false,
-			extraNoteNote: "",
-			attachedFileState: false,
-			attachedFileStateNote: "",
-		},
-		{
-			name: "09:00",
-			color: "#a1160d",
-			patrolState: false,
-			patrolNotes: "",
-			lockedDoorState: false,
-			lockedDoorNotes: "",
-			unlockedDoorState: false,
-			unlockedDoorNotes: "SEE?",
-			monitoredCameraState: false,
-			monitoredCameraNote: "",
-			securityRiskState: false,
-			securityRiskNote: "",
-			extraNoteState: false,
-			extraNoteNote: "",
-			attachedFileState: false,
-			attachedFileStateNote: "",
-		},
-	],
-};
 const generatReport = () => {
 	console.log("Hi there");
 
@@ -181,6 +133,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => {
 	return {
 		timeSlotName: state.timeslot.timeSlotName,
+		initialData: state.timeslot.initialData,
 	};
 };
 

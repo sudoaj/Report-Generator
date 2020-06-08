@@ -15,9 +15,69 @@ import {
 	SET_EXTRA_NOTE_NOTE,
 	SET_ATTACHED_FILE_STATE,
 	SET_ATTACHED_FILE_NOTE,
+	SET_EDITTED,
 } from "./types";
 
-export default (state = {}, action) => {
+const initialData = {
+	formData: [
+		{
+			timeSlotName: "1900",
+			timeSlotColor: "grey",
+			patrolState: false,
+			patrolNotes: "",
+			lockedDoorState: false,
+			lockedDoorNotes: "",
+			unlockedDoorState: false,
+			unlockedDoorNotes: "SEE?",
+			monitoredCameraState: false,
+			monitoredCameraNote: "",
+			securityRiskState: false,
+			securityRiskNote: "",
+			extraNoteState: false,
+			extraNoteNote: "",
+			attachedFileState: false,
+			attachedFileStateNote: "",
+		},
+		{
+			timeSlotName: "2000",
+			timeSlotColor: "grey",
+			patrolState: false,
+			patrolNotes: "",
+			lockedDoorState: false,
+			lockedDoorNotes: "",
+			unlockedDoorState: false,
+			unlockedDoorNotes: "SEE?",
+			monitoredCameraState: false,
+			monitoredCameraNote: "",
+			securityRiskState: false,
+			securityRiskNote: "",
+			extraNoteState: false,
+			extraNoteNote: "",
+			attachedFileState: false,
+			attachedFileStateNote: "",
+		},
+
+		{
+			timeSlotName: "2100",
+			timeSlotColor: "grey",
+			patrolState: false,
+			patrolNotes: "",
+			lockedDoorState: false,
+			lockedDoorNotes: "",
+			unlockedDoorState: false,
+			unlockedDoorNotes: "SEE?",
+			monitoredCameraState: false,
+			monitoredCameraNote: "",
+			securityRiskState: false,
+			securityRiskNote: "",
+			extraNoteState: false,
+			extraNoteNote: "",
+			attachedFileState: false,
+			attachedFileStateNote: "",
+		},
+	],
+};
+export default (state = { initialData }, action) => {
 	switch (action.type) {
 		case SET_TIME_SLOT_NAME:
 			return { ...state, timeSlotName: action.payload };
@@ -51,6 +111,10 @@ export default (state = {}, action) => {
 			return { ...state, attachedFileState: action.payload };
 		case SET_ATTACHED_FILE_NOTE:
 			return { ...state, attachedFileNote: action.payload };
+		case SET_EDITTED:
+			let newData = { ...state.initialData };
+			newData.formData[action.index] = action.payload;
+			return { ...state, initialData: newData };
 		default:
 			return state;
 	}

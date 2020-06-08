@@ -15,8 +15,16 @@ import {
 	SET_EXTRA_NOTE_NOTE,
 	SET_ATTACHED_FILE_STATE,
 	SET_ATTACHED_FILE_NOTE,
+	SET_EDITTED,
 } from "./types";
 
+export const editSlot = (index, data) => (dispatch) => {
+	dispatch({
+		type: SET_EDITTED,
+		payload: data,
+		index,
+	});
+};
 export const setTimeSlotName = (timeSlotName) => (dispatch) => {
 	dispatch({
 		type: SET_TIME_SLOT_NAME,

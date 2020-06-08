@@ -10,42 +10,60 @@ import { connect } from "react-redux";
 import { CheckBox } from "react-native-elements";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
-import {
-	setTimeSlotName,
-	setTimeSlotColor,
-	setPatrolState,
-	setPatrolNote,
-	setLockedDoorState,
-	setLockedDoorNote,
-	setUnlockedDoorState,
-	setUnlockedDoorNote,
-	setMonitoredCameraState,
-	setMonitoredCameraNote,
-	setSecurityRiskState,
-	setSecurityRiskNote,
-	setExtraNoteState,
-	setExtraNoteNote,
-	setAttachedFileState,
-	setAttachedFileNote,
-} from "../store/timeslot/actions";
+import { editSlot } from "../store/timeslot/actions";
 import { Actions } from "react-native-router-flux";
 
 class PatrolForms extends React.Component {
-	componentDidMount = () => {
-		this.props.setTimeSlotName("1900");
-		this.props.setTimeSlotColor("green");
+	state = {
+		timeSlotName: this.props.formData.timeSlotName,
+		timeSlotColorIncomplete: "yellow",
+		timeSlotColorCompleted: "green",
+		patrolState: this.props.formData.patrolState,
+		patrolNotes: this.props.formData.patrolNotes,
+		lockedDoorState: this.props.formData.lockedDoorState,
+		lockedDoorNotes: this.props.formData.lockedDoorNotes,
+	};
+
+	saveAsIncomplete = () => {
+		let data = {
+			...this.props.formData,
+			timeSlotName: this.state.timeSlotName,
+			timeSlotColor: this.state.timeSlotColorIncomplete,
+			patrolState: this.state.patrolState,
+			patrolNotes: this.state.patrolNotes,
+			lockedDoorState: this.state.lockedDoorState,
+			lockedDoorNotes: this.state.lockedDoorNotes,
+		};
+		this.props.editSlot(this.props.formIndex, data);
+		Actions.pop();
+	};
+
+	saveAsComplete = () => {
+		let data = {
+			...this.props.formData,
+			timeSlotName: this.state.timeSlotName,
+			timeSlotColor: this.state.timeSlotColorCompleted,
+			patrolState: this.state.patrolState,
+			patrolNotes: this.state.patrolNotes,
+			lockedDoorState: this.state.lockedDoorState,
+			lockedDoorNotes: this.state.lockedDoorNotes,
+		};
+		this.props.editSlot(this.props.formIndex, data);
+		Actions.pop();
 	};
 	render() {
 		return (
 			<KeyboardAwareScrollView>
-				<Text style={styles.hourName}>{this.props.timeSlotName}</Text>
+				<Text style={styles.hourName}>{this.state.timeSlotName}</Text>
 				<View style={styles.container}>
 					<CheckBox
 						checkedColor="blue"
 						uncheckedColor="red"
 						title="Patrol"
-						checked={this.props.patrolState}
-						onPress={() => this.props.setPatrolState(!this.props.patrolState)}
+						checked={this.state.patrolState}
+						onPress={() =>
+							this.setState({ patrolState: !this.state.patrolState })
+						}
 					/>
 					<View style={styles.textAreaContainer}>
 						<TextInput
@@ -55,15 +73,36 @@ class PatrolForms extends React.Component {
 							placeholderTextColor="grey"
 							numberOfLines={5}
 							multiline={true}
-							value={this.props.patrolNote}
-							onChangeText={(text) => this.props.setPatrolNote(text)}
+							value={this.state.patrolNotes}
+							onChangeText={(text) => this.setState({ patrolNotes: text })}
+						/>
+					</View>
+					<CheckBox
+						checkedColor="blue"
+						uncheckedColor="red"
+						title="Locked Doors"
+						checked={this.state.lockedDoorState}
+						onPress={() =>
+							this.setState({ lockedDoorState: !this.state.lockedDoorState })
+						}
+					/>
+					<View style={styles.textAreaContainer}>
+						<TextInput
+							style={styles.textArea}
+							underlineColorAndroid="transparent"
+							placeholder="Type something"
+							placeholderTextColor="grey"
+							numberOfLines={5}
+							multiline={true}
+							value={this.state.lockedDoorNotes}
+							onChangeText={(text) => this.setState({ lockedDoorNotes: text })}
 						/>
 					</View>
 				</View>
 				<View style={styles.container}>
 					<TouchableHighlight
 						style={styles.submit1}
-						onPress={() => Actions.pop()}
+						onPress={() => this.saveAsIncomplete()}
 						underlayColor="#fff"
 					>
 						<Text style={styles.submitText}>Save As Incomplete</Text>
@@ -72,7 +111,7 @@ class PatrolForms extends React.Component {
 				<View>
 					<TouchableHighlight
 						style={styles.submit2}
-						onPress={() => Actions.pop()}
+						onPress={() => this.saveAsComplete()}
 						underlayColor="#fff"
 					>
 						<Text style={styles.submitText2}>Save Hour</Text>
@@ -144,55 +183,13 @@ const styles = StyleSheet.create({
 });
 const mapStateToProps = (state) => {
 	return {
-		timeSlotName: state.timeslot.timeSlotName,
-		patrolState: state.timeslot.patrolState,
-		patrolNote: state.timeslot.patrolNote,
-		lockedDoorstate: state.timeslot.lockedDoorstate,
-		lockedDoorNote: state.timeslot.lockedDoorNote,
-		unlockedDoorState: state.timeslot.unlockedDoorState,
-		unlockedDoorNote: state.timeslot.unlockedDoorNote,
-		monitoredCameraState: state.timeslot.monitoredCameraState,
-		monitoredCameraNote: state.timeslot.monitoredCameraNote,
-		securityRiskState: state.timeslot.securityRiskState,
-		securityRiskNote: state.timeslot.securityRiskNote,
-		extraNoteState: state.timeslot.extraNoteState,
-		extraNotesNote: state.timeslot.extraNotesNote,
-		attachedFileState: state.timeslot.attachedFileState,
-		attachedFileNote: state.timeslot.attachedFileNote,
+		initialData: state.timeslot.initialData,
 	};
 };
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		setTimeSlotName: (timeSlotName) => dispatch(setTimeSlotName(timeSlotName)),
-		setTimeSlotColor: (timeSlotColor) =>
-			dispatch(setTimeSlotColor(timeSlotColor)),
-		setPatrolState: (patrolState) => dispatch(setPatrolState(patrolState)),
-		setPatrolNote: (patrolNote) => dispatch(setPatrolNote(patrolNote)),
-		setLockedDoorState: (lockedDoorstate) =>
-			dispatch(setLockedDoorState(lockedDoorstate)),
-		setLockedDoorNote: (lockedDoorNote) =>
-			dispatch(setLockedDoorNote(lockedDoorNote)),
-		setUnlockedDoorState: (unlockedDoorState) =>
-			dispatch(setUnlockedDoorState(unlockedDoorState)),
-		setUnlockedDoorNote: (unlockedDoorNote) =>
-			dispatch(setUnlockedDoorNote(unlockedDoorNote)),
-		setMonitoredCameraState: (monitoredCameraState) =>
-			dispatch(setMonitoredCameraState(monitoredCameraState)),
-		setMonitoredCameraNote: (monitoredCameraNote) =>
-			dispatch(setMonitoredCameraNote(monitoredCameraNote)),
-		setSecurityRiskState: (securityRiskState) =>
-			dispatch(setSecurityRiskState(securityRiskState)),
-		setSecurityRiskNote: (securityRiskNote) =>
-			dispatch(setSecurityRiskNote(securityRiskNote)),
-		setExtraNoteState: (extraNoteState) =>
-			dispatch(setExtraNoteState(extraNoteState)),
-		setExtraNoteNote: (extraNotesNote) =>
-			dispatch(setExtraNoteNote(extraNotesNote)),
-		setAttachedFileState: (attachedFileState) =>
-			dispatch(setAttachedFileState(attachedFileState)),
-		setAttachedFileNote: (attachedFileNote) =>
-			dispatch(setAttachedFileNote(attachedFileNote)),
+		editSlot: (index, data) => dispatch(editSlot(index, data)),
 	};
 };
 

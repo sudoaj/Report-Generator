@@ -8,13 +8,16 @@ import {
 	Text,
 } from "react-native";
 import { Table, TableWrapper, Row, Rows } from "react-native-table-component";
-import globalData from "../components/IndividualTimeContainer";
 import { connect } from "react-redux";
 
 class CompletedReport extends Component {
-	
+	componentDidMount() {
+		console.log(this.props.initialData.formData.length);
+		console.log(this.props.initialData.formData);
+	}
 	constructor(props) {
 		super(props);
+		console.log(props.initialData.forData);
 		this.state = {
 			officerNameAndDate: [
 				["Name: ", this.props.officerName],
@@ -25,47 +28,11 @@ class CompletedReport extends Component {
 				["Time: ", this.props.reportTime],
 			],
 			tableHead: ["Time", "Entry"],
-			tableData: [
-				[
-					"1900",
-					"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry",
-				],
-				[
-					"2000",
-					"LoremLoremLoremLoremLoremLoremLoremLoremLoremLoremLoremLoremLoremLorem ",
-				],
-				[
-					"2100",
-					"Lorem Ipsum is simply dumndard dummy text ever since the 1500s,it to make a type specimen book. It has survived not",
-				],
-				[
-					"2100",
-					"Lorem Ipsum is simply dumndard dummy text ever since the 1500s,it to make a type specimen book. It has survived not",
-				],
-				[
-					"2100",
-					"Lorem Ipsum is simply dumndard dummy text ever since the 1500s,it to make a type specimen book. It has survived not",
-				],
-				[
-					"2100",
-					"Lorem Ipsum is simply dumndard dummy text ever since the 1500s,it to make a type specimen book. It has survived not",
-				],
-				[
-					"2100",
-					"Lorem Ipsum is simply dumndard dummy text ever since the 1500s,it to make a type specimen book. It has survived not",
-				],
-				[
-					"2100",
-					"Lorem Ipsum is simply dumndard dummy text ever since the 1500s,it to make a type specimen book. It has survived not",
-				],
-				[
-					"2100",
-					"Lorem Ipsum is simply dumndard dummy text ever since the 1500s,it to make a type specimen book. It has survived not",
-				],
-			],
-			officerSignature: [["Signature:"]],
+
+			officerSignature: [["Signature: " + this.props.officerName]],
 		};
 	}
+
 	render() {
 		const state = this.state;
 		return (
@@ -108,14 +75,17 @@ class CompletedReport extends Component {
 								style={styles.head}
 								textStyle={styles.headText}
 							/>
-
-							<TableWrapper style={styles.wrapper}>
-								<Rows
-									data={state.tableData}
+							{this.props.initialData.formData.map((item) => (
+								<Row
+									data={[
+										item.timeSlotName,
+										item.patrolState + "," + item.lockedDoorNotes,
+									]}
 									flexArr={[1, 4]}
-									textStyle={styles.text}
+									style={styles.head}
+									textStyle={styles.headText}
 								/>
-							</TableWrapper>
+							))}
 							<Rows
 								data={state.officerSignature}
 								flexArr={[1, 4]}
@@ -141,9 +111,11 @@ class CompletedReport extends Component {
 	}
 }
 
+
+
+
 const handlePrintJob = () => {
 	console.log("Printing...");
-	console.log(globalData.initialData);
 };
 const styles = StyleSheet.create({
 	container: {
@@ -224,8 +196,9 @@ const mapStateToProps = (state) => {
 		officerName: state.officer.officerName,
 		reportDate: state.officer.reportDate,
 		reportTime: state.officer.reportTime,
-		reportSiteLocation: state.officer.reportSiteLocation
+		reportSiteLocation: state.officer.reportSiteLocation,
 
+		initialData: state.timeslot.initialData,
 	};
 };
 export default connect(mapStateToProps)(CompletedReport);
