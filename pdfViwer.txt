@@ -1,1 +1,0 @@
-https://www.pdftron.com/blog/mobile/how-to-build-a-pdf-viewer-react-native/
