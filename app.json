@@ -1,11 +1,10 @@
 {
   "expo": {
-    "name": "Reactt-Native-Boilerplate",
-    "slug": "Reactt-Native-Boilerplate",
+    "name": "Report Generator",
+    "slug": "Report-Generator",
     "platforms": [
       "ios",
-      "android",
-      "web"
+      "android"
     ],
     "version": "1.0.0",
     "orientation": "portrait",
