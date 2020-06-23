@@ -1,0 +1,6 @@
+module Pods_TRANSACTION_TRANSACTIONTests {
+  umbrella header "Pods-TRANSACTION-TRANSACTIONTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

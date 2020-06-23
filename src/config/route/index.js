@@ -5,9 +5,7 @@ import { Root } from "native-base";
 import TabIcon from "../../partials/tab-icon";
 import { Router, Scene, Stack } from "react-native-router-flux";
 import AppHomeScreen from "../../screens/app-home-screen";
-import ReportFormScreen from "../../screens/report-form";
-import ReportRecordScreen from "../../screens/report-record";
-import CompletedReport from "../../screens/completed-report";
+
 
 // Home Screen Import
 import ClockIn from "../../screens/clock-in";

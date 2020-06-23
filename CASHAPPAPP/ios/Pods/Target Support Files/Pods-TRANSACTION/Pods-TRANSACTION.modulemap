@@ -1,0 +1,6 @@
+module Pods_TRANSACTION {
+  umbrella header "Pods-TRANSACTION-umbrella.h"
+
+  export *
+  module * { export * }
+}

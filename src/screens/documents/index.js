@@ -11,7 +11,7 @@ export default class Documents extends React.Component {
         <View>
           <ListItem
             onPress={() => {
-              Linking.openURI(
+              Linking.openURL(
                 "http://gahp.net/wp-content/uploads/2017/09/sample.pdf"
               );
             }}
@@ -21,7 +21,7 @@ export default class Documents extends React.Component {
           />
           <ListItem
             onPress={() => {
-              Linking.openURI(
+              Linking.openURL(
                 "http://gahp.net/wp-content/uploads/2017/09/sample.pdf"
               );
             }}
@@ -31,7 +31,7 @@ export default class Documents extends React.Component {
           />
           <ListItem
             onPress={() => {
-              Linking.openURI(
+              Linking.openURL(
                 "http://gahp.net/wp-content/uploads/2017/09/sample.pdf"
               );
             }}
