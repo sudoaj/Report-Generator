@@ -6,7 +6,7 @@ import { Input, ButtonInput, ErrorTxt } from "../../partials/form/input";
 import ClockedIn from "./clocked-in";
 import ClockedOut from "./clocked-out";
 import { Actions } from "react-native-router-flux";
-export default class SignIn extends React.Component {
+export default class ClockIn extends React.Component {
   state = {
     clockedInVisible: false,
     clockedOutVisible: false,

@@ -6,8 +6,8 @@ import TabIcon from "../../partials/tab-icon";
 import { Router, Scene, Stack } from "react-native-router-flux";
 import AppHomeScreen from "../../screens/app-home-screen";
 
-
 // Home Screen Import
+import SignIn from "../../screens/sign-in";
 import ClockIn from "../../screens/clock-in";
 import Report from "../../screens/report";
 import Announcements from "../../screens/announcements";
@@ -15,7 +15,7 @@ import Chat from "../../screens/chat";
 import Documents from "../../screens/documents";
 import Emergency from "../../screens/emergency";
 import Profile from "../../screens/profile";
-import Phonebook from "../../screens/phone-book"
+import Phonebook from "../../screens/phone-book";
 import ChatDetails from "../../screens/chat/chat-details";
 
 class Routes extends Component {
@@ -30,12 +30,13 @@ class Routes extends Component {
             {/* Root Scene */}
             <Stack key={"root"}>
               <Scene
-                key={"Menu"}
-                tabs={true}
-                showLabel={false}
                 initial={true}
+                navigationBarStyle={{ backgroundColor: "white" }}
+                key="SignInApp"
+                component={SignIn}
                 hideNavBar
-              >
+              />
+              <Scene key={"Menu"} tabs={true} showLabel={false} hideNavBar>
                 {/* Home Tab and it's scenes */}
                 <Scene
                   key={"Home"}
