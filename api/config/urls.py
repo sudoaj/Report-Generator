@@ -27,15 +27,15 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
     #API URL ENDPOINT
-    url(r'^api/', include('api.v1.account.urls')),
+    url(r'^api/', include('api.v1.urls')),
 
     #AUTHENTICATION URL ENDPOINT
     url(r'^auth/', include('django.contrib.auth.urls')),
     
-
     # DEFAULT PROJECT URL ENDPOIUNT
     url(r'^home/', include('project.homepage.urls')),
     url(r'^about/', include('project.aboutpage.urls')),
+
     
 ]
 

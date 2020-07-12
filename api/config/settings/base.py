@@ -53,12 +53,20 @@ DJANGO_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+
+
 )
 
 THIRD_PARTY_APPS = (
     'rest_framework',
-    'knox'
-
+    'rest_framework.authtoken',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
+    'rest_framework_swagger',
+    'django.contrib.sites',
 )
 
 LOCAL_APPS = (
@@ -68,7 +76,11 @@ LOCAL_APPS = (
 )
 
 API_APPS = (
-    'api.v1.account',
+    # 'api.v1.account',
+    'api.v1.report',
+    'api.v1.rest_auth',
+    'api.v1.rest_auth.registration',
+
 )
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS + API_APPS
@@ -168,5 +180,21 @@ MEDIA_ROOT = str(APPS_DIR('media'))
 
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
-    'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        # 'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    )
+}
+
+
+REST_SESSION_LOGIN = True
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+SITE_ID = 1
+ACCOUNT_EMAIL_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'username'
+ACCOUNT_EMAIL_VERIFICATION = 'optional'
+
+SWAGGER_SETTINGS = {
+    'LOGIN_URL': 'login',
+    'LOGOUT_URL': 'logout',
 }
