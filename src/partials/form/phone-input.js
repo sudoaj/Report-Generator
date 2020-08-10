@@ -8,7 +8,7 @@ import axios from "axios";
 
 const Wrap = styled.View``
 const Box = styled.View`
-  height: ${verticalScale(80)};
+  height: ${verticalScale(80)}px;
   width: 100%;
   border-width: 1px;
   border-color: ${props => props.invalid ? '#ff1053' : props.valid ? '#2ed397' : 'rgba(0,0,0,0.09)'};
@@ -20,9 +20,9 @@ const Box = styled.View`
   padding-top: 10px;
 `
 const Label = styled.Text`
-  font-size: ${moderateScale(14)};
+  font-size: ${moderateScale(14)}px;
   font-family: GothamBold;
-  margin-bottom: ${verticalScale(7)};
+  margin-bottom: ${verticalScale(7)}px;
   color: #003366;
   opacity: 0.5;
 `
@@ -38,15 +38,15 @@ const ForgetTouch = styled.TouchableOpacity`
 const ForgetTxt = styled.Text`
   color: #003366;
   font-family: GothamBold;
-  font-size: ${moderateScale(15)};
+  font-size: ${moderateScale(15)}px;
   margin-top: 2px;
 `
 const Input = styled.TextInput`
   width: 70%;
-  margin-left: ${verticalScale(7)};
+  margin-left: ${verticalScale(7)}px;
   color: #003366;
   font-family: GothamBold;
-  font-size: ${moderateScale(15)};
+  font-size: ${moderateScale(15)}px;
 `
 
 

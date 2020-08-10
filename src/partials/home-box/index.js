@@ -16,7 +16,7 @@ export default function HomeBox({
     actionOnPress();
   };
   return (
-    <TouchableHighlight onPress={pressedThis} underlayColor="rgba(0,0,0.9)">
+    <TouchableHighlight onPress={pressedThis}>
       <View
         style={{
           backgroundColor: customBgColor,

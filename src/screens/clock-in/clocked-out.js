@@ -8,7 +8,7 @@
 //   render() {
 //     return (
 //       <Modal style={styles.container} visible={this.props.visible}>
-//         <Header title={"Clocked in"} left={() => Actions.pop()} />
+//         <Header title={"Clocked in"} left={() => Actions.pop()}px />
 //         <View>
 
 //           <View style={styles.buttonWrap}>
@@ -49,29 +49,35 @@ const Inner = styled.View`
   flex: 1;
 `;
 const MarkWrap = styled.View`
-  height: ${verticalScale(200)};
-  width: ${verticalScale(200)};
-  border-radius: ${verticalScale(200) / 2};
+  height: ${verticalScale(200)}px;
+  width: ${verticalScale(200)}px;
+  border-radius: ${verticalScale(200) / 2}px;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  background-color: #2ed397;
+  background-color: red;
 `;
 const Check = styled(Icon)`
   color: #fff;
-  font-size: ${moderateScale(80)};
+  font-size: ${moderateScale(80)}px;
 `;
 const ThanksTxt = styled.Text`
   color: #003366;
-  font-size: ${moderateScale(20)};
+  font-size: ${moderateScale(20)}px;
   font-family: GothamBold;
-  margin-top: ${verticalScale(40)};
-  margin-bottom: ${verticalScale(40)};
+  margin-top: ${verticalScale(40)}px;
+  margin-bottom: ${verticalScale(40)}px;
+`;
+const EmployeeTxt = styled.Text`
+  color: #003366;
+  font-size: ${moderateScale(20)}px;
+  font-family: GothamBold;
+  margin-top: ${verticalScale(40)}px;
 `;
 const Btn = styled.TouchableOpacity`
-  width: ${scale(180)};
-  height: ${verticalScale(50)};
-  background-color: #2ed397;
+  width: ${scale(180)}px;
+  height: ${verticalScale(50)}px;
+  background-color: red;
   border-radius: 6px;
   flex-direction: row;
   align-items: center;
@@ -79,7 +85,7 @@ const Btn = styled.TouchableOpacity`
 `;
 const Txt = styled.Text`
   font-family: GothamBold;
-  font-size: ${moderateScale(20)};
+  font-size: ${moderateScale(20)}px;
   letter-spacing: 1px;
   color: #fff;
 `;
@@ -97,6 +103,7 @@ export default class ClockedOut extends React.Component {
           <MarkWrap>
             <Check type={"FontAwesome"} name={"thumbs-up"} />
           </MarkWrap>
+          <EmployeeTxt>{this.props.userEmployeeNumber}</EmployeeTxt>
           <ThanksTxt>You have now clocked out</ThanksTxt>
           <Btn onPress={this.props.close}>
             <Txt>DONE</Txt>

@@ -93,7 +93,7 @@ const InputWrap = styled.View`
 const BtnInput = styled.TextInput`
   width: 75%;
   color: #003366;
-  font-size: ${moderateScale(15)};
+  font-size: ${moderateScale(15)}px;
   font-family: GothamBold;
 `
 const ForgetTouch = styled.TouchableOpacity`
@@ -102,7 +102,7 @@ const ForgetTouch = styled.TouchableOpacity`
 const ForgetTxt = styled.Text`
   color: #2ed397;
   font-family: GothamBold;
-  font-size: ${moderateScale(14)};
+  font-size: ${moderateScale(14)}px;
   text-align: right;
 `
 export const ButtonInput = props => (
@@ -132,11 +132,11 @@ export const ButtonInput = props => (
  * Error Component
  */
 const ErrorTxtStyle = styled.Text`
-  font-size: ${moderateScale(11)};
+  font-size: ${moderateScale(11)}px;
   color: #ff1053;
   font-family: GothamBook;
-  margin-top: ${verticalScale(5)};
-  margin-left: ${scale(5)};
+  margin-top: ${verticalScale(5)}px;
+  margin-left: ${scale(5)}px;
 `
 export const ErrorTxt = props => (
   <ErrorTxtStyle>{props.error}</ErrorTxtStyle>

@@ -6,15 +6,18 @@ import { Input, ButtonInput, ErrorTxt } from "../../partials/form/input";
 import ClockedIn from "./clocked-in";
 import ClockedOut from "./clocked-out";
 import { Actions } from "react-native-router-flux";
+import store from "../../config/store";
+
 export default class ClockIn extends React.Component {
   state = {
+    userEmployeeNumber: store.getState().auth.userprofile.employee_number,
     clockedInVisible: false,
     clockedOutVisible: false,
   };
-  handleClockIn = () => {
+  handleClockIn = (hi) => {
     this.setState({ clockedInVisible: true });
     // Actions.clockedOut();
-    console.log("clocked in");
+    console.log(this.state.userEmployeeNumber, "clocked in");
   };
   handleClockOut = () => {
     this.setState({ clockedOutVisible: true });
@@ -33,6 +36,7 @@ export default class ClockIn extends React.Component {
         <Header title={"Clock in/out"} left={() => Actions.pop()} />
         <View>
           <Input
+            value={this.state.userEmployeeNumber}
             name={"employeeNumber"}
             label={"Employee Number"}
             capitalize={"none"}
@@ -66,10 +70,12 @@ export default class ClockIn extends React.Component {
           </View>
         </View>
         <ClockedIn
+          userEmployeeNumber={this.state.userEmployeeNumber}
           visible={this.state.clockedInVisible}
           close={() => this.done("clockedInVisible")}
         />
         <ClockedOut
+          userEmployeeNumber={this.state.userEmployeeNumber}
           visible={this.state.clockedOutVisible}
           close={() => this.done("clockedOutVisible")}
         />

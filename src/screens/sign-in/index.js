@@ -1,4 +1,5 @@
 import * as React from "react";
+import { connect } from "react-redux";
 import {
   StyleSheet,
   View,
@@ -7,17 +8,29 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   Keyboard,
+  Linking,
+  ActivityIndicator,
 } from "react-native";
+import { loginUser } from "../../config/store/auth/action";
+import { Actions } from "react-native-router-flux";
 
-export default class SignIn extends React.Component {
+class SignIn extends React.Component {
   state = {
-    email: "",
-    password: "",
+    loading: false,
+    loggedIn: false,
+    email: "Aj@aj.com",
+    password: "aj2020",
   };
   handleSignIn = () => {
-    console.log(this.state.email);
-    console.log(this.state.password);
-    console.log("clocked in");
+    this.setState({
+      loading: true,
+    });
+    this.props.loginUser(this.state.email, this.state.password, () => {
+      Actions.Menu();
+      this.setState({
+        loading: false,
+      });
+    });
   };
   render() {
     return (
@@ -27,6 +40,7 @@ export default class SignIn extends React.Component {
 
           <View style={styles.inputView}>
             <TextInput
+              value={this.state.email}
               style={styles.inputText}
               placeholder="Email..."
               placeholderTextColor="#003f5c"
@@ -35,6 +49,7 @@ export default class SignIn extends React.Component {
           </View>
           <View style={styles.inputView}>
             <TextInput
+              value={this.state.password}
               secureTextEntry
               style={styles.inputText}
               placeholder="Password..."
@@ -45,17 +60,26 @@ export default class SignIn extends React.Component {
           <TouchableOpacity>
             <Text style={styles.forgot}>Forgot Password?</Text>
           </TouchableOpacity>
-          <Text style={styles.terms}>By using our mobile app, you agree to our Terms and condition policy</Text>
 
           <TouchableOpacity
             style={styles.loginBtn}
             onPress={() => this.handleSignIn()}
           >
-            <Text style={styles.loginText}>LOGIN</Text>
+            {this.state.loading && <ActivityIndicator size="small" />}
+            {!this.state.loading && <Text style={styles.loginText}>LOGIN</Text>}
           </TouchableOpacity>
           <TouchableOpacity>
             <Text style={styles.loginText}>Signup</Text>
           </TouchableOpacity>
+          <Text style={styles.terms}>
+            By using our mobile app, you agree to our {}
+            <Text
+              style={{ color: "blue" }}
+              onPress={() => Linking.openURL("http://example.com")}
+            >
+              terms and condition policy
+            </Text>
+          </Text>
         </View>
       </TouchableWithoutFeedback>
     );
@@ -102,12 +126,30 @@ const styles = StyleSheet.create({
     color: "black",
     fontSize: 11,
   },
-  terms:{
+  terms: {
+    marginTop: 150,
     color: "black",
     fontSize: 11,
   },
   loginText: {
+    alignItems: "center",
+    textAlign: "center",
     color: "black",
     fontSize: 15,
   },
 });
+
+const mapStateToProps = (state) => {
+  return {
+    theToken: state.auth.token,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loginUser: (username, password, callback) =>
+      dispatch(loginUser(username, password, callback)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

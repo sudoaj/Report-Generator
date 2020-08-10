@@ -5,9 +5,9 @@ import styled from 'styled-components'
 import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 
 const Wrap = styled.View`
-  width: ${verticalScale(45)};
-  height: ${verticalScale(45)};
-  border-radius: ${verticalScale(45) / 2};
+  width: ${verticalScale(45)}px;
+  height: ${verticalScale(45)}px;
+  border-radius: ${verticalScale(45) / 2}px;
   background-color: #f7f8fa;
   flex-direction: row;
   align-items: center;
@@ -15,12 +15,12 @@ const Wrap = styled.View`
 `
 const Logo = styled(Icon)`
   color: #003366;
-  font-size: ${moderateScale(22)};
+  font-size: ${moderateScale(22)}px;
 `
 const Txt = styled.Text`
   font-family: GothamMedium;
   color: #003366;
-  font-size: ${moderateScale(16)};
+  font-size: ${moderateScale(16)}px;
   margin-top: ${Platform.OS === 'android' ? '0px' : '3px'};
 `
 

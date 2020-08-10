@@ -5,11 +5,12 @@ import { Root } from "native-base";
 import TabIcon from "../../partials/tab-icon";
 import { Router, Scene, Stack } from "react-native-router-flux";
 import AppHomeScreen from "../../screens/app-home-screen";
-
+import store from "../store";
 // Home Screen Import
 import SignIn from "../../screens/sign-in";
 import ClockIn from "../../screens/clock-in";
 import Report from "../../screens/report";
+import ReportRecord from "../../screens/report-record";
 import Announcements from "../../screens/announcements";
 import Chat from "../../screens/chat";
 import Documents from "../../screens/documents";
@@ -17,12 +18,15 @@ import Emergency from "../../screens/emergency";
 import Profile from "../../screens/profile";
 import Phonebook from "../../screens/phone-book";
 import ChatDetails from "../../screens/chat/chat-details";
+import ReportForm from "../../partials/report-box/report-form";
 
 class Routes extends Component {
   state = {
     loaded: true,
+    token: store.getState().auth.token,
   };
   render() {
+    console.log(this.state.token);
     return (
       <Fragment>
         <Root>
@@ -56,35 +60,50 @@ class Routes extends Component {
                     key="clockIn"
                     direction="vertical"
                     component={ClockIn}
-                    title="Sign in"
+                    title="Clock in"
                   />
                   <Scene
                     hideNavBar
                     key="report"
                     direction="vertical"
                     component={Report}
-                    title="Sign in"
+                    title="Report"
+                  />
+                  <Scene
+                    hideNavBar
+                    key="reportForm"
+                    component={ReportForm}
+                    title="report-form"
+                  />
+                  <Scene
+                    hideNavBar
+                    key="report-record"
+                    direction="vertical"
+                    component={ReportRecord}
+                    title="Report"
                   />
                   <Scene
                     hideNavBar
                     key="Announcements"
                     direction="vertical"
                     component={Announcements}
-                    title="Sign in"
+                    title="Announcements"
                   />
                   <Scene
                     hideNavBar
                     key="chat"
                     direction="vertical"
                     component={Chat}
-                    title="Sign in"
+                    title="chat"
                   />
+
                   <Scene
                     hideNavBar
                     key="chatDetails"
                     component={ChatDetails}
                     title="Chat Details"
                   />
+
                   <Scene
                     hideNavBar
                     key="documents"

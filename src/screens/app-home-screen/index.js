@@ -11,7 +11,7 @@ import WavyHeader from "../../partials/wavy-header";
 import HomeBox from "../../partials/home-box";
 import { Avatar, Badge } from "react-native-elements";
 import { Actions } from "react-native-router-flux";
-
+import store from "../../config/store";
 export default class AppHomeScreen extends React.Component {
   render() {
     return (
@@ -24,15 +24,19 @@ export default class AppHomeScreen extends React.Component {
           customWavePattern="M0,160L34.3,181.3C68.6,203,137,245,206,240C274.3,235,343,181,411,154.7C480,128,549,128,617,144C685.7,160,754,192,823,218.7C891.4,245,960,267,1029,277.3C1097.1,288,1166,288,1234,288C1302.9,288,1371,288,1406,288L1440,288L1440,0L1405.7,0C1371.4,0,1303,0,1234,0C1165.7,0,1097,0,1029,0C960,0,891,0,823,0C754.3,0,686,0,617,0C548.6,0,480,0,411,0C342.9,0,274,0,206,0C137.1,0,69,0,34,0L0,0Z"
         />
         <View style={styles.headerContainer}>
-          <Text style={styles.headerText}>Hello, {"Ajayi"}</Text>
-          <Text style={styles.headerText2}>{"#5121"}</Text>
+          <Text style={styles.headerText}>
+            Hello, {store.getState().auth.userprofile.first_name}
+          </Text>
+          <Text style={styles.headerText2}>
+            {"Employee #" + store.getState().auth.userprofile.employee_number}
+          </Text>
         </View>
         <TouchableHighlight onPress={() => Actions.profiles({ left: true })}>
           <View style={styles.headerNotification}>
             <Avatar
               rounded
               source={{
-                uri: "https://randomuser.me/api/portraits/women/6.jpg",
+                uri: store.getState().auth.userprofile.profile_picture,
               }}
               size="medium"
             />
@@ -57,6 +61,12 @@ export default class AppHomeScreen extends React.Component {
               iconName="md-book"
               actionOnPress={Actions.report}
             ></HomeBox>
+            {/* <HomeBox
+              customBgColor="white"
+              content="Report record"
+              iconName="md-book"
+              actionOnPress={Actions.report-record}
+            ></HomeBox> */}
             <HomeBox
               customBgColor="white"
               content="Announcements"
@@ -75,14 +85,14 @@ export default class AppHomeScreen extends React.Component {
               iconName="md-paper"
               actionOnPress={Actions.documents}
             ></HomeBox>
-           
-             <HomeBox
+
+            <HomeBox
               customBgColor="white"
               content="Phone book"
               iconName="md-call"
               actionOnPress={Actions.phonebook}
             ></HomeBox>
-             <HomeBox
+            <HomeBox
               customBgColor="white"
               content="Emergency"
               iconName="md-alert"
@@ -141,7 +151,7 @@ const styles = StyleSheet.create({
     elevation: 8,
   },
   headerText2: {
-    fontSize: 20,
+    fontSize: 15,
     fontWeight: "bold",
     color: "#fff",
     textAlign: "left",

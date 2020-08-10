@@ -7,7 +7,7 @@ import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 
 const Wrap = styled.View``
 const DateBox = styled.TouchableOpacity`
-  height: ${verticalScale(80)};
+  height: ${verticalScale(80)}px;
   width: 100%;
   border-width: 1px;
   border-color: rgba(0,0,0,0.09);
@@ -18,16 +18,16 @@ const DateBox = styled.TouchableOpacity`
   padding-right: 25px;
 `
 const Label = styled.Text`
-  font-size: ${moderateScale(14)};
+  font-size: ${moderateScale(14)}px;
   font-family: GothamBold;
-  margin-bottom: ${verticalScale(10)};
+  margin-bottom: ${verticalScale(10)}px;
   color: #003366;
   opacity: 0.5;
 `
 const DateValue = styled.Text`
   width: 100%;
   color: #003366;
-  font-size: ${moderateScale(15)};
+  font-size: ${moderateScale(15)}px;
   font-family: GothamBold;
 `
 

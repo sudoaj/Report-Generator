@@ -42,7 +42,6 @@ export default function TopTime() {
 }
 const styles = StyleSheet.create({
 	container: {
-		marginTop: -130,
 		backgroundColor: "#fff",
 	},
 	topTimeText: {

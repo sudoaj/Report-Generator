@@ -12,7 +12,7 @@ const height = Dimensions.get('window').height - headerHeight
 
 const Wrap = styled.View``
 const DateBox = styled.TouchableOpacity`
-  height: ${verticalScale(80)};
+  height: ${verticalScale(80)}px;
   width: 100%;
   border-width: 1px;
   border-color: rgba(0,0,0,0.09);
@@ -23,16 +23,16 @@ const DateBox = styled.TouchableOpacity`
   padding-right: 25px;
 `
 const Label = styled.Text`
-  font-size: ${moderateScale(14)};
+  font-size: ${moderateScale(14)}px;
   font-family: GothamBold;
-  margin-bottom: ${verticalScale(12)};
+  margin-bottom: ${verticalScale(12)}px;
   color: #003366;
   opacity: 0.5;
 `
 const DateValue = styled.Text`
   width: 100%;
   color: #003366;
-  font-size: ${moderateScale(15)};
+  font-size: ${moderateScale(15)}px;
   font-family: GothamBold;
 `
 const Modal = styled.Modal``
@@ -41,7 +41,7 @@ const Inner = styled.View`
   background-color: #f7f8fa;
 `
 const SearchBar = styled.View`
-  height: ${verticalScale(52)};
+  height: ${verticalScale(52)}px;
   width: 100%;
   background-color: #fff;
   border-bottom-width: 1px;
@@ -55,7 +55,7 @@ const Input = styled.TextInput`
   height: 80%;
   width: 100%;
   color: #003366;
-  font-size: ${moderateScale(14)};
+  font-size: ${moderateScale(14)}px;
   font-family: GothamMedium;
 `
 const DataWrap = styled.View`
@@ -63,7 +63,7 @@ const DataWrap = styled.View`
   padding-left: 15px;
 `
 const EachData = styled.TouchableOpacity`
-  height: ${verticalScale(70)};
+  height: ${verticalScale(70)}px;
   width: 100%;
   flex-direction: row;
   align-items: center;
@@ -78,9 +78,9 @@ const ImageWrap = styled.View`
   margin-right: 15px;
 `
 const Img = styled.Image`
-  width: ${verticalScale(40)};
-  height: ${verticalScale(40)};
-  border-radius: ${verticalScale(40) / 2};
+  width: ${verticalScale(40)}px;
+  height: ${verticalScale(40)}px;
+  border-radius: ${verticalScale(40) / 2}px;
   background-color: #f7f8fa;
   resize-mode: contain;
 `
@@ -95,13 +95,13 @@ const Detail = styled.View`
 `
 const DetailInner = styled.View``
 const Name = styled.Text`
-  font-size: ${moderateScale(14)};
+  font-size: ${moderateScale(14)}px;
   font-family: GothamBold;
   color: #003366;
-  margin-bottom: ${verticalScale(5)};
+  margin-bottom: ${verticalScale(5)}px;
 `
 const SubTitle = styled.Text`
-  font-size: ${moderateScale(12)};
+  font-size: ${moderateScale(12)}px;
   font-family: GothamBold;
   color: #003366;
   opacity: 0.5;

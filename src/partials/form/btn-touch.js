@@ -7,7 +7,7 @@ import {verticalScale, moderateScale} from 'react-native-size-matters';
  * Text input components
  */
 const Wrap = styled.TouchableOpacity`
-  height: ${verticalScale(80)};
+  height: ${verticalScale(80)}px;
   width: 100%;
   border-width: 1px;
   border-color: ${props => props.invalid ? '#ff1053' : props.valid ? '#2ed397' : 'rgba(0,0,0,0.09)'};
@@ -18,16 +18,16 @@ const Wrap = styled.TouchableOpacity`
   padding-right: 10px;
 `
 const Label = styled.Text`
-  font-size: ${moderateScale(14)};
+  font-size: ${moderateScale(14)}px;
   font-family: GothamBold;
-  margin-bottom: ${verticalScale(10)};
+  margin-bottom: ${verticalScale(10)}px;
   color: #003366;
   opacity: 0.5;
 `
 const InputStyle = styled.Text`
   width: 80%;
   color: #003366;
-  font-size: ${moderateScale(15)};
+  font-size: ${moderateScale(15)}px;
   font-family: GothamBold;
 `
 
@@ -45,7 +45,7 @@ const ForgetTouch = styled.TouchableOpacity`
 const ForgetTxt = styled.Text`
   color: #2ed397;
   font-family: GothamBold;
-  font-size: ${moderateScale(14)};
+  font-size: ${moderateScale(14)}px;
   text-align: right;
   width: 75%;
 `
