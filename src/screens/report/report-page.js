@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+import { connect } from "react-redux";
 import {
   StyleSheet,
   Text,
@@ -7,86 +8,60 @@ import {
   View,
   Image,
 } from "react-native";
-
 import { SwipeListView } from "react-native-swipe-list-view";
-import ReportForm from "./report-form";
-import store from "../../config/store";
 import { Actions } from "react-native-router-flux";
+import { storeReport } from "../../config/store/report/actions";
+import store from "../../config/store";
 
-export default function SectionList() {
-  const [listData, setListData] = useState(
-    Array(3)
-      .fill("")
-      .map((_, i) => ({
-        title: `title${i + 1}`,
-        data: [
-          ...Array(2)
-            .fill("")
-            .map((_, j) => ({
-              key: `${i}.${j}`,
-              text: `${j} of ${i}`,
-            })),
-        ],
-      }))
-  );
-  const [reportFormVisible, setReportFormVisible] = useState(false);
+class SectionList extends React.Component {
+  state = {
+    listData: this.props.report,
+  };
 
-  const closeRow = (rowMap, rowKey) => {
+  closeRow = (rowMap, rowKey) => {
     if (rowMap[rowKey]) {
+      console.log("test", { rowKey: rowKey });
       rowMap[rowKey].closeRow();
     }
   };
-  const handleClickedBox = (rowKey) => {
-    setReportFormVisible(true);
+  handleClickedBox = (rowKey) => {
     console.log(rowKey);
     console.log("You touched me");
-    Actions.reportRecord;
-  };
-  const done = (rowKey) => {
-    setReportFormVisible(false);
-    console.log(reportFormVisible, rowKey);
   };
 
-  const deleteRow = (rowMap, rowKey) => {
-    closeRow(rowMap, rowKey);
-    const [section] = rowKey.split(".");
-    const newData = [...listData];
-    const prevIndex = listData[section].data.findIndex(
+  deleteRow = (rowMap, rowKey) => {
+    this.closeRow(rowMap, rowKey);
+    [this.section] = rowKey.split(".");
+    this.newData = [...this.state.listData];
+    this.prevIndex = this.state.listData[this.section].data.findIndex(
       (item) => item.key === rowKey
     );
-    newData[section].data.splice(prevIndex, 1);
-    setListData(newData);
+    this.newData[this.section].data.splice(this.prevIndex, 1);
+    // this.props.storeReport(this.newData);
+    this.setState({ listData: this.newData });
   };
 
-  const onRowDidOpen = (rowKey) => {
+  onRowDidOpen = (rowKey) => {
     console.log("This row opened", rowKey);
   };
 
-  const renderItem = (data) => (
+  renderItem = (data) => (
     <TouchableHighlight
       onPress={() => {
-        Actions.reportForm();
-        handleClickedBox(data.item.key);
+        Actions.reportForm({ data: data.item });
+        this.handleClickedBox(data.item.key);
       }}
       style={styles.rowFront}
       underlayColor={"#AAA"}
     >
       <View style={styles.boxContainer}>
         {/* ADD FORM HERE */}
-        {/* <ReportForm
-          userEmployeeNumber={data.item.key}
-          visible={reportFormVisible}
-          close={() => done(data.item.key)}
-        ></ReportForm> */}
         <View style={styles.boxContainer1}>
-          <Text style={styles.boxText1}>{data.item.text}</Text>
+          <Text style={styles.boxText1}>{data.item.time}</Text>
         </View>
         <View style={styles.boxContainer2}>
           <View style={styles.textContainer}>
-            <Text style={styles.boxText2}>
-              All clear for the hour. No activity goin on All clear for the
-              hour.No activity goin on
-            </Text>
+            <Text style={styles.boxText2}>{data.item.text}</Text>
           </View>
           <View style={styles.thumbNailView}>
             <Image
@@ -107,43 +82,45 @@ export default function SectionList() {
     </TouchableHighlight>
   );
 
-  const renderHiddenItem = (data, rowMap) => (
+  renderHiddenItem = (data, rowMap) => (
     <View style={styles.rowBack}>
       <Text>Left</Text>
       <TouchableOpacity
         style={[styles.backRightBtn, styles.backRightBtnLeft]}
-        onPress={() => closeRow(rowMap, data.item.key)}
+        onPress={() => this.closeRow(rowMap, data.item.key)}
       >
         <Text style={styles.backTextWhite}>Close</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={[styles.backRightBtn, styles.backRightBtnRight]}
-        onPress={() => deleteRow(rowMap, data.item.key)}
+        onPress={() => this.deleteRow(rowMap, data.item.key)}
       >
         <Text style={styles.backTextWhite}>Delete</Text>
       </TouchableOpacity>
     </View>
   );
 
-  const renderSectionHeader = ({ section }) => (
+  renderSectionHeader = ({ section }) => (
     <Text style={styles.sectionTitleText}>{section.title}</Text>
   );
 
-  return (
-    <SwipeListView
-      useSectionList
-      sections={listData}
-      renderItem={renderItem}
-      renderHiddenItem={renderHiddenItem}
-      renderSectionHeader={renderSectionHeader}
-      leftOpenValue={75}
-      rightOpenValue={-150}
-      previewRowKey={"0"}
-      previewOpenValue={-40}
-      previewOpenDelay={3000}
-      onRowDidOpen={onRowDidOpen}
-    />
-  );
+  render() {
+    return (
+      <SwipeListView
+        useSectionList
+        sections={this.state.listData}
+        renderItem={this.renderItem}
+        renderHiddenItem={this.renderHiddenItem}
+        renderSectionHeader={this.renderSectionHeader}
+        leftOpenValue={75}
+        rightOpenValue={-150}
+        previewRowKey={"0"}
+        previewOpenValue={-40}
+        previewOpenDelay={3000}
+        onRowDidOpen={this.onRowDidOpen}
+      />
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -260,3 +237,17 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
   },
 });
+
+const mapStateToProps = (state) => {
+  return {
+    report: state.report.report,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    storeReport: (report) => dispatch(storeReport(report)),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(SectionList);
+

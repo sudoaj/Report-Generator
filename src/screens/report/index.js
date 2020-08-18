@@ -2,8 +2,7 @@ import * as React from "react";
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import Header from "../../partials/header";
 import { Actions } from "react-native-router-flux";
-import TopTime from "../../partials/top-time";
-import ReportBox from "../../partials/report-box/index";
+import ReportBox from "./report-page";
 
 export default class Report extends React.Component {
   handleSignOut = () => {
@@ -15,11 +14,9 @@ export default class Report extends React.Component {
       <View style={styles.container}>
         <Header title={"Report"} left={() => Actions.pop()} />
         <View style={styles.boxContainer}>
-          {/* <TopTime></TopTime> */}
-        
           <ReportBox></ReportBox>
-            {/* Top Button Start */}
-            <View style={styles.topBtnContainer}>
+          {/* Top Button Start */}
+          <View style={styles.topBtnContainer}>
             <TouchableOpacity
               style={styles.addTimeBtn}
               onPress={() => this.handleSignOut()}
@@ -83,7 +80,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    marginBottom:50,
+    marginBottom: 55,
   },
 
   addTimeBtn: {
@@ -98,8 +95,8 @@ const styles = StyleSheet.create({
 
     marginBottom: 10,
   },
-  plusBtnText:{
-    fontSize:30,
-    fontWeight:"bold"
-  }
+  plusBtnText: {
+    fontSize: 30,
+    fontWeight: "bold",
+  },
 });

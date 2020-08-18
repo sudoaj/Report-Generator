@@ -18,7 +18,7 @@ import Emergency from "../../screens/emergency";
 import Profile from "../../screens/profile";
 import Phonebook from "../../screens/phone-book";
 import ChatDetails from "../../screens/chat/chat-details";
-import ReportForm from "../../partials/report-box/report-form";
+import ReportForm from "../../screens/report/report-form";
 
 class Routes extends Component {
   state = {

@@ -5,7 +5,7 @@ import {
   GET_USER_ROUTE,
   GET_USERPROFILE_ROUTE,
 } from "../../utils";
-import store from "../../store";
+
 import axios from "axios";
 export const storeToken = (token) => (dispatch) =>
   dispatch({ type: STORE_TOKEN, data: token });
@@ -106,7 +106,7 @@ const getUserProfile = (token, callback) => (dispatch) => {
         console.log(response.data);
         dispatch(storeUserProfile(response.data));
         console.log("userprofile stored");
-        callback()
+        callback();
       } else {
         console.log(response.status);
         console.log("unable to get user");
