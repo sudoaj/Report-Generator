@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "autolinker": "^3.14.1",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "babel": "^6.23.0",
     "expo": "~37.0.3",
     "expo-av": "^8.4.0",
